@@ -1,0 +1,21 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "structspawn",
+    "name": "StructureSpawnerLib",
+    "description": "Library to Spawn Structures saved using the Structure Blocks, with several features on top",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": " ",
+    "updateUrl": "",
+    "authorList": [ "soronthar" ],
+    "credits": "Authored by soronthar",
+    "logoFile": "",
+    "screenshots": [ "" ],
+    "parent": "",
+    "requiredMods": [  ],
+    "dependencies": [  ],
+    "dependants": [ ],
+    "useDependencyInformation": true
+  }]
+}

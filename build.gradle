@@ -1,0 +1,99 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    maven { url "http://dvs1.progwml6.com/files/maven" }
+    maven { url "http://tehnut.info/maven" }
+    ivy {
+        name "LatMod"
+        artifactPattern "http://mods.latmod.com/[module]/[revision]/[module]-[revision](-[classifier]).[ext]"
+    }
+    // McJty stuff
+    maven { url "http://maven.k-4u.nl" }
+    maven {
+        name 'OC Repo'
+        url "http://maven.cil.li/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+}
+
+ext.buildnumber = ""
+if (System.getenv().BUILD_NUMBER) {
+    ext.buildnumber = "-" + System.getenv().BUILD_NUMBER
+}
+
+version = "${minecraft_version}-${mod_version}${buildnumber}"
+group = "mc.structspawn"
+archivesBaseName = "StructSpawnLib"
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "run"
+    mappings = "${mappings_version}"
+    replace "@VERSION@", "${mod_version}"
+    replace "@FORGEVERSION@", "${forge_version}"
+    replaceIn "${archivesBaseName}Info.java"
+}
+
+dependencies {
+    runtime "mezz.jei:jei_1.12.2:4.7.9.96"
+    testCompile group: 'org.testng', name: 'testng', version: '6.8.+'
+}
+
+processResources
+        {
+            inputs.property "version", project.version
+            inputs.property "mcversion", project.minecraft.version
+
+            from(sourceSets.main.resources.srcDirs) {
+                include 'mcmod.info'
+
+                expand 'version': project.version, 'mcversion': project.minecraft.version
+            }
+
+            from(sourceSets.main.resources.srcDirs) {
+                exclude 'mcmod.info'
+            }
+        }
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'Oceanica'
+            artifact jar
+        }
+    }
+    repositories {
+        if (project.hasProperty('maven_repo')) {
+            maven { url maven_repo }
+        } else {
+            mavenLocal()
+        }
+    }
+}
+
+idea { module { inheritOutputDirs = true } }

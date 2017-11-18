@@ -1,0 +1,81 @@
+{
+  "structures": [
+    {
+      "name": "debug:bighollowring",
+      "structure": [
+        "structspawn:debug/bighollowring"
+      ],
+      "description": "16x16 hollow ring with a bone block north border"
+    },
+    {
+      "name": "debug:bighollowringwithcoal",
+      "structure": [
+        "structspawn:debug/bighollowring"
+      ],
+      "description": "16x16 hollow ring with coal a north border",
+      "palette": [
+        {
+          "name": "default-palette",
+          "transform": {
+            "minecraft:bone_block": "minecraft:coal_block"
+          }
+        }
+      ]
+    },
+    {
+      "name": "debug:smallhollowring",
+      "structure": [
+        "structspawn:debug/smallhollowring"
+      ],
+      "description": "14x14 hollow white wool ring"
+    },
+    {
+      "name": "debug:smallhollowringpaletteref",
+      "structure": [
+        "structspawn:debug/smallhollowring"
+      ],
+      "description": "14x14 hollow white wool ring"
+      //      "palette": "test-palette"
+    },
+    {
+      "name": "debug:smallring",
+      "structure": [
+        "structspawn:debug/smallring"
+      ],
+      "description": "14x14 solid ring"
+    },
+    {
+      "name": "debug:teststructure",
+      "structure": [
+        "structspawn:teststructure"
+      ],
+      "description": "Test Structure with lots of elements"
+    },
+    {
+      "name": "debug:testchest",
+      "structure": [
+        "structspawn:debug/testchest"
+      ],
+      "description": "Test Structure with two chests"
+    },
+    {
+      "name": "debug:testlootchest",
+      "structure": [
+        "structspawn:debug/testchest"
+      ],
+      "description": "Test Structure with two chests",
+      "lootTables": [
+        "minecraft:entities/sheep/orange"
+      ]
+    }
+
+  ],
+  "palettes": [
+    {
+      "name": "test-palette",
+      "transform": {
+        "minecraft:wool@0": "minecraft:wool@5"
+      }
+    }
+  ]
+}
